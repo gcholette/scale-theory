@@ -1,6 +1,6 @@
 const { majorSteps, modes, noteSemitonesHashMap, noteSemitonesArray } = require('./constants')
 
-export const getSteps = (modeIndex) => [ majorSteps.slice(modeIndex+1), majorSteps.slice(0, modeIndex)].flat()
+export const getSteps = (modeIndex) => [ majorSteps.slice(modeIndex), majorSteps.slice(0, modeIndex)].flat()
 
 export const getScaleSemitones = (modeIndex, tonalityIndex) => {
 	const steps = getSteps(modeIndex)
