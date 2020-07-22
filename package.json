@@ -1,0 +1,17 @@
+{
+  "name": "scale-theory",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "start": "tsc && npm run test",
+    "test": "jest out/ --coverage",
+    "dev": "tsc -w"
+  },
+  "author": "Gabriel Cholette-Rioux",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.5",
+    "jest": "^26.1.0",
+    "typescript": "^3.9.7"
+  }
+}
