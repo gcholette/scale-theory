@@ -1,11 +1,16 @@
 import { modes } from '../constants'
-import { getScale } from '../scales'
+import { getScale, getSteps } from '../scales'
 
-/*test('getSteps aeolian should return 2 1 2 2 1 2', () => {
+test('getSteps ionian should return 2 2 1 2 2 2 1', () => {
+  const steps = getSteps(modes.ionian)
+  expect(steps).toStrictEqual([2, 2, 1, 2, 2, 2, 1])
+})
 
-}) */
+test('getSteps aeolian should return 2 1 2 2 1 2 2', () => {
+  const steps = getSteps(modes.aeolian)
+  expect(steps).toMatchObject([2,1,2,2,1,2,2])
+})
 
-/*
 test('C Major scale generation', () => {
   const scale = getScale(modes.ionian, 'C')
   expect(scale).toStrictEqual(['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'])
@@ -14,7 +19,7 @@ test('C Major scale generation', () => {
 test('C# Major scale generation', () => {
   const scale = getScale(modes.ionian, 'C#')
   expect(scale).toStrictEqual(['C#', 'Eb', 'F', 'F#', 'Ab', 'Bb', 'C', 'C#'])
-}) */
+})
 
 test('A Natural minor scale generation', () => {
   const scale = getScale(modes.aeolian, 'A')

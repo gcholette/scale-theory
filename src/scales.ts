@@ -4,7 +4,6 @@ export const getSteps = (modeIndex) => [ majorSteps.slice(modeIndex), majorSteps
 
 export const getScaleSemitones = (modeIndex, tonalityIndex) => {
 	const steps = getSteps(modeIndex)
-	console.log('steps', steps)
 	const tones = steps.reduce((acc, step) => {
 		if (acc.length === 0) {
 		  const val = (step + tonalityIndex) % 12
