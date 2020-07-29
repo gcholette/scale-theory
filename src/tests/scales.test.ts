@@ -1,12 +1,12 @@
 import { modes } from '../constants'
 import { getScale, getSteps } from '../scales'
 
-test('getSteps ionian should return 2 2 1 2 2 2 1', () => {
+test('getSteps ionian should return "whole whole half whole whole whole half"', () => {
   const steps = getSteps(modes.ionian)
   expect(steps).toStrictEqual([2, 2, 1, 2, 2, 2, 1])
 })
 
-test('getSteps aeolian should return 2 1 2 2 1 2 2', () => {
+test('getSteps aeolian should return "whole half whole whole half whole whole"', () => {
   const steps = getSteps(modes.aeolian)
   expect(steps).toMatchObject([2,1,2,2,1,2,2])
 })

@@ -18,8 +18,7 @@ export const getScaleSemitones = (modeIndex, tonalityIndex) => {
 }
 
 export const getScale = (modeIndex, note) => {
-	return getScaleSemitones(modes.ionian, noteSemitonesHashMap[note]).map(x => noteSemitonesArray[x])
-
+	return getScaleSemitones(modeIndex, noteSemitonesHashMap[note]).map(x => noteSemitonesArray[x])
 }
 
 /*
