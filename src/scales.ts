@@ -1,33 +1,30 @@
-const { majorSteps, modes, noteSemitonesHashMap, noteSemitonesArray } = require('./constants')
+const {majorSteps, modes, noteSemitonesHashMap, noteSemitonesArray} = require('./constants')
 
-export const getSteps = (modeIndex) => [ majorSteps.slice(modeIndex), majorSteps.slice(0, modeIndex)].flat()
+export const getModeSteps: (mode: string) => number[] =
+    (mode) =>
+        [majorSteps.slice(modes[mode.toLowerCase()]), majorSteps.slice(0, modes[mode.toLowerCase()])].flat()
 
-export const getScaleSemitones = (modeIndex, tonalityIndex) => {
-	const steps = getSteps(modeIndex)
-	const tones = steps.reduce((acc, step) => {
-		if (acc.length === 0) {
-		  const val = (step + tonalityIndex) % 12
-			return [tonalityIndex, val]
-		} else {
-			const val = (acc[acc.length -1] + step) % 12
-			return [...acc, val]
-		}
-	}, [])
+export const getModeSemitones:
+    (mode: string, tonality: string) => number[] =
+    (mode, tonality) => {
+        const tonalityIndex = noteSemitonesHashMap[tonality.toUpperCase()]
+        const steps = getModeSteps(mode)
+        return steps.reduce((acc, step) => {
+            if (acc.length === 0) {
+                const val = (step + tonalityIndex) % 12
+                return [tonalityIndex, val]
+            } else {
+                const val = (acc[acc.length - 1] + step) % 12
+                return [...acc, val]
+            }
+        }, [])
+    }
 
-	return tones 
-}
+export const getScale: (mode: string, tonality: string) => string[] =
+    (mode, tonality) => {
+        // todo
+        // return right notes, either bemol or sharp, every letter must only appear once
+        // right now returning fixed Ab instead of G#, etc
+        return getModeSemitones(mode, tonality).map(x => noteSemitonesArray[x])
+    }
 
-export const getScale = (modeIndex, note) => {
-	return getScaleSemitones(modeIndex, noteSemitonesHashMap[note]).map(x => noteSemitonesArray[x])
-}
-
-/*
-console.log('C Major: ', getScaleSemitones(modes.ionian, noteSemitonesHashMap['C']).map(x => noteSemitonesArray[x]))
-console.log('D Natural minor: ', getScaleSemitones(modes.aeolian, noteSemitonesHashMap['D']).map(x => noteSemitonesArray[x]))
-console.log('A lydian: ', getScaleSemitones(modes.lydian, noteSemitonesHashMap['A']).map(x => noteSemitonesArray[x]))
-console.log('B lydian: ', getScaleSemitones(modes.lydian, noteSemitonesHashMap['B']).map(x => noteSemitonesArray[x]))
-console.log('Bb lydian: ', getScaleSemitones(modes.lydian, noteSemitonesHashMap['Bb']).map(x => noteSemitonesArray[x]))
-
-console.log('A', getScaleSemitones(modes.lydian, noteSemitonesHashMap['A']))
-console.log('A', getScaleSemitones(modes.lydian, noteSemitonesHashMap['A']))
- */
