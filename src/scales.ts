@@ -28,3 +28,5 @@ export const getScale: (mode: string, tonality: string) => string[] =
         return getModeSemitones(mode, tonality).map(x => noteSemitonesArray[x])
     }
 
+// getModeSemitones -> diatonic scales only?
+// should getScale receive pentatonic / diatonic / etc as argument?
