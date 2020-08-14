@@ -1,18 +1,17 @@
-import {modes} from '../constants'
-import {getModeSemitones, getScale, getModeSteps} from '../scales'
+import {getModeSemitones, getScale, getDiatonicModeSteps} from '../scales'
 
-test('getModeSteps ionian', () => {
-    const steps = getModeSteps('ionian')
+test('getDiatonicModeSteps ionian', () => {
+    const steps = getDiatonicModeSteps('ionian')
     expect(steps).toStrictEqual([2, 2, 1, 2, 2, 2, 1])
 })
 
-test('getModeSteps aeolian', () => {
-    const steps = getModeSteps('aeolian')
+test('getDiatonicModeSteps aeolian', () => {
+    const steps = getDiatonicModeSteps('aeolian')
     expect(steps).toMatchObject([2, 1, 2, 2, 1, 2, 2])
 })
 
-test('getModeSteps mixolodian', () => {
-    const steps = getModeSteps('mixolodian')
+test('getDiatonicModeSteps mixolodian', () => {
+    const steps = getDiatonicModeSteps('mixolodian')
     expect(steps).toMatchObject([2, 2, 1, 2, 2, 1, 2])
 })
 

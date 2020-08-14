@@ -21,7 +21,7 @@ export const noteSemitonesHashMap = {
   'B': 11
 }
 
-export const modes = {
+export const modeOffset = {
   ionian: 0,
   major: 0,
   dorian: 1,

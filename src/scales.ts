@@ -1,14 +1,16 @@
-const {majorSteps, modes, noteSemitonesHashMap, noteSemitonesArray} = require('./constants')
+import { ScaleSemitones, Notes, DiatonicModeSteps, Mode, Note } from "./types"
 
-export const getModeSteps: (mode: string) => number[] =
+const {majorSteps, modeOffset, noteSemitonesHashMap, noteSemitonesArray} = require('./constants')
+
+export const getDiatonicModeSteps: (mode: Mode) => DiatonicModeSteps =
     (mode) =>
-        [majorSteps.slice(modes[mode.toLowerCase()]), majorSteps.slice(0, modes[mode.toLowerCase()])].flat()
+        [majorSteps.slice(modeOffset[mode.toLowerCase()]), majorSteps.slice(0, modeOffset[mode.toLowerCase()])].flat()
 
 export const getModeSemitones:
-    (mode: string, tonality: string) => number[] =
+    (mode: Mode, tonality: Note) => ScaleSemitones =
     (mode, tonality) => {
         const tonalityIndex = noteSemitonesHashMap[tonality.toUpperCase()]
-        const steps = getModeSteps(mode)
+        const steps = getDiatonicModeSteps(mode)
         return steps.reduce((acc, step) => {
             if (acc.length === 0) {
                 const val = (step + tonalityIndex) % 12
@@ -20,7 +22,7 @@ export const getModeSemitones:
         }, [])
     }
 
-export const getScale: (mode: string, tonality: string) => string[] =
+export const getScale: (mode: Mode, tonality: Note) => Notes =
     (mode, tonality) => {
         // todo
         // return right notes, either bemol or sharp, every letter must only appear once
@@ -28,3 +30,4 @@ export const getScale: (mode: string, tonality: string) => string[] =
         return getModeSemitones(mode, tonality).map(x => noteSemitonesArray[x])
     }
 
+// should getScale receive pentatonic / diatonic / etc as argument?
