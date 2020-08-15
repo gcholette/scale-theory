@@ -1,5 +1,19 @@
-export const majorSteps = [2, 2, 1, 2, 2, 2, 1]
-export const noteSemitonesArray = [ 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab','A', 'Bb', 'B' ]
+import { DiatonicModeSteps, PentatonicModeSteps, Notes } from "./types"
+
+export const diatonicSteps: DiatonicModeSteps = [2, 2, 1, 2, 2, 2, 1]
+export const pentatonicSteps: PentatonicModeSteps = [2, 2, 3, 2, 2]
+
+export const noteSemitonesArray: Notes =
+  ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
+
+export const noteSymbols: Notes =
+  ['Cb', 'C', 'C#',
+    'Db', 'D', 'D#',
+    'Eb', 'E', 'E#',
+    'Fb', 'F', 'F#',
+    'Gb', 'G', 'G#',
+    'Ab', 'A', 'A#',
+    'Bb', 'B', 'B#']
 
 export const noteSemitonesHashMap = {
   'C': 0,

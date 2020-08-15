@@ -1,18 +1,38 @@
-import {getModeSemitones, getScale, getDiatonicModeSteps} from '../scales'
+import {getModeSemitones, getScale, getModeSteps} from '../scales'
 
-test('getDiatonicModeSteps ionian', () => {
-    const steps = getDiatonicModeSteps('ionian')
+test('getModeSteps Diatonic ionian', () => {
+    const steps = getModeSteps('ionian')
     expect(steps).toStrictEqual([2, 2, 1, 2, 2, 2, 1])
 })
 
-test('getDiatonicModeSteps aeolian', () => {
-    const steps = getDiatonicModeSteps('aeolian')
+test('getModeSteps Diatonic aeolian', () => {
+    const steps = getModeSteps('aeolian')
     expect(steps).toMatchObject([2, 1, 2, 2, 1, 2, 2])
 })
 
-test('getDiatonicModeSteps mixolodian', () => {
-    const steps = getDiatonicModeSteps('mixolodian')
+test('getModeSteps Diatonic mixolodian', () => {
+    const steps = getModeSteps('mixolodian')
     expect(steps).toMatchObject([2, 2, 1, 2, 2, 1, 2])
+})
+
+test('getModeSteps Pentatonic ionian', () => {
+    const steps = getModeSteps('ionian', "pentatonic")
+    expect(steps).toMatchObject([2, 2, 3, 2, 2])
+})
+
+test('getModeSteps Pentatonic dorian', () => {
+    const steps = getModeSteps('dorian', 'pentatonic')
+    expect(steps).toMatchObject([2, 3, 2, 2, 2])
+})
+
+test('getModeSteps Pentatonic phrygian', () => {
+    const steps = getModeSteps('phrygian', 'pentatonic')
+    expect(steps).toMatchObject([3, 2, 2, 2, 2])
+})
+
+test('getModeSteps Pentatonic aeolian', () => {
+    const steps = getModeSteps('aeolian', 'pentatonic')
+    expect(steps).toMatchObject([2, 2, 3, 2, 2])
 })
 
 test('getModeSemitones C Major', () => {
@@ -38,6 +58,11 @@ test('getScale C Major', () => {
 test('getScale A Natural minor', () => {
     const scale = getScale('minor', 'A')
     expect(scale).toStrictEqual(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A'])
+})
+
+test('getScale A Pentatonic Minor', () => {
+    const scale = getScale('minor', 'A', 'pentatonic')
+    expect(scale).toStrictEqual(['A', 'C', 'E', 'G', 'A'])
 })
 
 /*
